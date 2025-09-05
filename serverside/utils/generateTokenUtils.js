@@ -13,7 +13,7 @@ export const generateAccessToken = (user) =>{
         name:user.username,
         email:user.email
     }
-    return jwt.sign(payload,ACCESS_TOKEN_SECRET,{expiresIn:"15m"})
+    return jwt.sign(payload,ACCESS_TOKEN_SECRET,{expiresIn:"45m"})
 }
 
 export const generateRefreshToken = async (user) =>{

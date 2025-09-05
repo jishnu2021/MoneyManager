@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
     password :{
         type:String,
         required: function() {
-            return !this.googleId; // Password not required for OAuth users
+            return !this.googleId;
         },
         minlength:[6,'Minimum password length is 6 characters']
     },
@@ -56,10 +56,7 @@ const userSchema = new mongoose.Schema({
 
 userSchema.pre("save", async function (next) {
     if(!this.isModified("password")) return next();
-    
-    // Skip hashing for OAuth users with placeholder password
     if (this.password === 'oauth-user') return next();
-    
     const salt = await bcrypt.genSalt()
     this.password = await bcrypt.hash(this.password, salt)
     next()
