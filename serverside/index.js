@@ -21,13 +21,16 @@ import User from "./models/User.js";
 import { sendEmail } from "./utils/email.js";
 
 // Run every day at 9 AM
-cron.schedule("0 9 * * *", async () => {
+cron.schedule("0 0 * * *", async () => {
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
   tomorrow.setHours(0, 0, 0, 0);
 
+  const dayAfter = new Date(tomorrow);
+  dayAfter.setDate(dayAfter.getDate() + 1);
+
   const bills = await Bill.find({
-    dueDate: tomorrow,
+    dueDate: { $gte: tomorrow, $lt: dayAfter },
     status: { $in: ["pending", "overdue"] }
   }).populate("userId", "email");
 
