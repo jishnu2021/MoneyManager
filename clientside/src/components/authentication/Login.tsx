@@ -16,7 +16,7 @@ const Login = () => {
   const { setUser } = useAuth();
   const navigate = useNavigate()
   const location = useLocation()
-
+  const baseUrl = import.meta.env.VITE_API_URI || "http://localhost:3000/api";
   // Handle OAuth success/error from URL params
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search)
@@ -55,7 +55,7 @@ const Login = () => {
     
     try {
       const result = await axios.post(
-        "http://localhost:3000/api/auth/login",
+        `${baseUrl}/auth/login`,
         values,
         { withCredentials: true }
       )

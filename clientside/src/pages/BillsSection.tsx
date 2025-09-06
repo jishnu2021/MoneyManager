@@ -58,7 +58,7 @@ const BillsSection = () => {
     dueDate: "",
     notes: ""
   });
-
+  const baseUrl = import.meta.env.VITE_API_URI || "http://localhost:3000/api"
   useEffect(() => {
     fetchBills();
   }, []);
@@ -113,7 +113,7 @@ const BillsSection = () => {
         return;
       }
 
-      const response = await fetch("http://localhost:3000/api/bills/all", {
+      const response = await fetch(`${baseUrl}/bills/all`, {
         headers: { 
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -164,7 +164,7 @@ const BillsSection = () => {
       setError(null);
       
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:3000/api/bills/add", {
+      const response = await fetch(`${baseUrl}/bills/add`, {
         method: 'POST',
         headers: { 
           Authorization: `Bearer ${token}`,
@@ -222,7 +222,7 @@ const BillsSection = () => {
 
       // Create payment order from backend
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://localhost:3000/api/bills/create-order`, {
+      const response = await fetch(`${baseUrl}/bills/create-order`, {
         method: "POST",
         headers: { 
           Authorization: `Bearer ${token}`,
@@ -253,7 +253,7 @@ const BillsSection = () => {
         order_id: order.id,
         handler: async (res: any) => {
           try {
-            const verifyResponse = await fetch("http://localhost:3000/api/bills/verify-payment", {
+            const verifyResponse = await fetch(`${baseUrl}/bills/verify-payment`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -316,7 +316,7 @@ const BillsSection = () => {
       const token = localStorage.getItem("token");
       
       // Fixed: Pass billId in the URL path
-      const response = await fetch(`http://localhost:3000/api/bills/delete/${billId}`, {
+      const response = await fetch(`${baseUrl}/bills/delete/${billId}`, {
         method: 'DELETE',
         headers: { 
           Authorization: `Bearer ${token}`,

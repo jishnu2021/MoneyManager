@@ -17,6 +17,7 @@ const Signup = () => {
   const { setUser } = useAuth();
   const navigate = useNavigate()
   // Handle OAuth success/error from URL params
+   const baseUrl = import.meta.env.VITE_API_URI || "http://localhost:3000/api";
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search)
     const token = urlParams.get('token')
@@ -50,7 +51,7 @@ const Signup = () => {
     const values = { username, email, password }
     try {
       const result = await axios.post(
-        "http://localhost:3000/api/auth/signup",
+        `${baseUrl}/auth/signup`,
         values,
         { withCredentials: true }
       )

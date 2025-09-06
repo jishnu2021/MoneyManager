@@ -63,7 +63,7 @@ const DashboardOverview = () => {
     "Check",
     "Other",
   ];
-
+  const baseUrl = import.meta.env.VITE_API_URI || "http://localhost:3000/api"
   // Fetch dashboard data
   useEffect(() => {
     fetchDashboardData();
@@ -72,10 +72,6 @@ const DashboardOverview = () => {
   const fetchDashboardData = async () => {
     try {
       const token = localStorage.getItem("token");
-      const baseUrl =
-        import.meta.env.VITE_API_URI || "http://localhost:3000/api";
-
-      // Fetch total budget
       const totalBudgetRes = await fetch(`${baseUrl}/total-budget`, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -84,7 +80,6 @@ const DashboardOverview = () => {
       });
       const totalBudgetData = await totalBudgetRes.json();
 
-      // Fetch monthly totals
       const monthlyRes = await fetch(`${baseUrl}/monthlytransaction`, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -124,7 +119,7 @@ const DashboardOverview = () => {
     try {
       setIsExporting(true);
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:3000/api/export", {
+      const response = await fetch(`${baseUrl}/export`, {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -206,9 +201,6 @@ const DashboardOverview = () => {
 
     try {
       const token = localStorage.getItem("token");
-      const baseUrl =
-        import.meta.env.VITE_API_URI || "http://localhost:3000/api";
-
       const response = await fetch(`${baseUrl}/transaction`, {
         method: "POST",
         headers: {

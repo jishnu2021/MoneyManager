@@ -36,7 +36,7 @@ const Profile = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // API Base URL - adjust based on your backend
-  const API_BASE = 'http://localhost:3000/api';
+  const API_BASE = import.meta.env.VITE_API_URI || 'http://localhost:3000/api';
   
   // Get auth token from localStorage (adjust based on your auth implementation)
   const getAuthToken = () => {
