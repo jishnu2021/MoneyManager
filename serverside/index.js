@@ -51,7 +51,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",            // local dev
-      "https://moneymanager-wgca.onrender.com"  // deployed frontend domain
+      "https://moneymanager-wgca.onrender.com",
     ],
     credentials: true,
   })

@@ -41,6 +41,7 @@ const Navbar = () => {
     { label: "About", path: "/about" },
     { label: "Services", path: "/services" },
   ];
+  
 
   return (
     <nav className="w-full bg-white border-b border-gray-200">
@@ -91,7 +92,7 @@ const Navbar = () => {
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Avatar className="cursor-pointer">
-                      <AvatarImage src={user?.profileImage || ""} alt={user?.username} />
+                      <AvatarImage src={(user as any)?.profileImage} alt={user?.username} />
                       <AvatarFallback>
                         {user?.username?.[0]?.toUpperCase() || "U"}
                       </AvatarFallback>
@@ -157,7 +158,7 @@ const Navbar = () => {
                     {/* User Info */}
                     <div className="flex items-center px-3 py-2">
                       <Avatar className="h-8 w-8">
-                        <AvatarImage src={user?.profileImage || ""} alt={user?.username} />
+                        <AvatarImage src={(user as any)?.profileImage} alt={user?.username} />
                         <AvatarFallback className="text-sm">
                           {user?.username?.[0]?.toUpperCase() || "U"}
                         </AvatarFallback>
