@@ -17,7 +17,6 @@ import {
 import DashboardOverview from './DashboardOverview';
 import TransactionsSection from '../../pages/TransactionSection';
 import ExpenseCategoriesSection from '../../pages/ExpenseCategoriesSection';
-import BudgetTrackingSection from '../../pages/BudgetTrackingSection';
 import GoalsSection from '../../pages/GoalSection';
 import BillsSection from '../../pages/BillsSection';
 import AIAssistantSection from '../../pages/AIAssistantSection';
@@ -32,7 +31,6 @@ const Dashboard = () => {
     { id: 'overview', icon: BarChart3, label: 'Dashboard Overview' },
     { id: 'transactions', icon: CreditCard, label: 'Recent Transactions' },
     { id: 'expenses', icon: PieChart, label: 'Expense Categories' },
-    { id: 'budget', icon: Target, label: 'Budget Tracking' },
     { id: 'goals', icon: TrendingUp, label: 'Financial Goals' },
     { id: 'bills', icon: Calendar, label: 'Upcoming Bills' },
     { id: 'ai-assistant', icon: Bot, label: 'AI Assistant' },
@@ -86,7 +84,6 @@ const Dashboard = () => {
       case 'overview': return <DashboardOverview />;
       case 'transactions': return <TransactionsSection />;
       case 'expenses': return <ExpenseCategoriesSection />;
-      case 'budget': return <BudgetTrackingSection />;
       case 'goals': return <GoalsSection />;
       case 'bills': return <BillsSection />;
       case 'ai-assistant': return <AIAssistantSection />;
@@ -100,7 +97,7 @@ const Dashboard = () => {
       {/* Mobile overlay */}
       {sidebarOpen && (
         <div 
-          className="fixed inset-0 bg-black bg-opacity-50 z-20 lg:hidden"
+          className="fixed inset-0 bg-black/30 bg-opacity-50 z-20 lg:hidden"
           onClick={() => setSidebarOpen(false)}
         />
       )}

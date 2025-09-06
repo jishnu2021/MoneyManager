@@ -21,6 +21,9 @@ import { useAuth } from "@/utils/AuthContext";
 const Navbar = () => {
   const navigate = useNavigate();
   const { user, logout } = useAuth();
+  console.log("ther user is: ",user);
+
+  
 
   const handleLogout = () => {
     logout();
@@ -83,26 +86,27 @@ const Navbar = () => {
                 </Button>
               </Link>
             ) : (
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Avatar className="cursor-pointer">
-                    <AvatarImage src={user?.avatar || ""} alt={user?.username} />
-                    <AvatarFallback>
-                      {user?.username?.[0]?.toUpperCase() || "U"}
-                    </AvatarFallback>
-                  </Avatar>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-48">
-                  <DropdownMenuLabel>{user?.username}</DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={() => navigate("/profile")}>
-                    Profile
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={handleLogout}>
-                    Logout
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+<DropdownMenu>
+  <DropdownMenuTrigger asChild>
+    <Avatar className="cursor-pointer">
+      <AvatarImage src={user?.profileImage || ""} alt={user?.username} />
+      <AvatarFallback>
+        {user?.username?.[0]?.toUpperCase() || "U"}
+      </AvatarFallback>
+    </Avatar>
+  </DropdownMenuTrigger>
+  <DropdownMenuContent className="w-48">
+    <DropdownMenuLabel>{user?.username}</DropdownMenuLabel>
+    <DropdownMenuSeparator />
+    <DropdownMenuItem onClick={() => navigate("/profile")}>
+      Profile
+    </DropdownMenuItem>
+    <DropdownMenuItem onClick={handleLogout}>
+      Logout
+    </DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>
+
             )}
           </div>
         </div>

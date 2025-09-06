@@ -7,6 +7,7 @@ import Dashboard from "./components/component/Dashboard";
 import ProtectedRoute from "./utils/ProtectedRoute";
 import About from "./components/component/About";
 import Services from "./components/component/Services";
+import Profile from "./components/component/Profile";
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
         />
         <Route path="about" element={<About/>}/>
         <Route path="services" element={<Services/>}/>
+        <Route path="profile" element={<Profile/>}/>
       </Routes>
     </BrowserRouter>
   );

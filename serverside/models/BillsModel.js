@@ -9,7 +9,7 @@ const billSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
-    trim: true, // e.g. "Rent", "Electricity"
+    trim: true,
   },
   amount: {
     type: Number,
@@ -26,7 +26,7 @@ const billSchema = new mongoose.Schema({
   },
   paymentMethod: {
     type: String,
-    default: null, // e.g. UPI, Card, Wallet
+    default: null, 
   },
   notes: {
     type: String,
